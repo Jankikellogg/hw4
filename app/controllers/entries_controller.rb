@@ -1,9 +1,4 @@
-class EntriesController < ApplicationController
-
-  def new
-  end
-
-  def create
+def create
 
   @entry = Entry.new
 
@@ -15,10 +10,12 @@ class EntriesController < ApplicationController
 
   @entry.save
 
-  @entry.image.attach(params["image"])
+  if params["image"] != nil
+
+    @entry.image.attach(params["image"])
+
+  end
 
   redirect_to "/places/#{@entry["place_id"]}"
-
-end
 
 end
